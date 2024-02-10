@@ -33,47 +33,47 @@ public class PlayerInteract : MonoBehaviour
                 interactObj.PauseCapture();
             }
         }
-        if (playerinput.interact)
-        {
-            if (findObjectInFov.hitObject != null)
-            {
-                interactObj = findObjectInFov.hitObject.GetComponent<MissionData>();
-                CollectionData();
-            }
-            else if (findObjectInFov.bookObject != null)
-            {
-                bookObj = findObjectInFov.bookObject;
-                GetBookData();
-            }
-            else if(findObjectInFov.keyObject != null)
-            {
-                keyObj = findObjectInFov.keyObject;
-                GetKey();
-            }
-            else if(findObjectInFov.doorObject != null)
-            {
-                doorObj = findObjectInFov.doorObject;
-                if(hasKey)
-                {
-                    DoorOpen();
-                }
-                else
-                {
-                    UIManager.instance.AcitveNeedKey();
-                }
+        //if (playerinput.interact)
+        //{
+        //    if (findObjectInFov.hitObject != null)
+        //    {
+        //        interactObj = findObjectInFov.hitObject.GetComponent<MissionData>();
+        //        CollectionData();
+        //    }
+        //    else if (findObjectInFov.bookObject != null)
+        //    {
+        //        bookObj = findObjectInFov.bookObject;
+        //        GetBookData();
+        //    }
+        //    else if(findObjectInFov.keyObject != null)
+        //    {
+        //        keyObj = findObjectInFov.keyObject;
+        //        GetKey();
+        //    }
+        //    else if(findObjectInFov.doorObject != null)
+        //    {
+        //        doorObj = findObjectInFov.doorObject;
+        //        if(hasKey)
+        //        {
+        //            DoorOpen();
+        //        }
+        //        else
+        //        {
+        //            UIManager.instance.AcitveNeedKey();
+        //        }
 
-            }
-            else if(findObjectInFov.NPCObject != null)
-            {
-                UIManager.instance.SetActiveNPC();
-            }
-            else
-            {
-                Debug.Log("hitObject null");
-                return;
-            }
+        //    }
+        //    else if(findObjectInFov.NPCObject != null)
+        //    {
+        //        UIManager.instance.SetActiveNPC();
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("hitObject null");
+        //        return;
+        //    }
 
-        }
+        //}
     
 
         if(interactObj != null)
@@ -84,6 +84,46 @@ public class PlayerInteract : MonoBehaviour
             }
         }
        
+    }
+    public void InteractObj()
+    {
+        if (findObjectInFov.hitObject != null)
+        {
+            interactObj = findObjectInFov.hitObject.GetComponent<MissionData>();
+            CollectionData();
+        }
+        else if (findObjectInFov.bookObject != null)
+        {
+            bookObj = findObjectInFov.bookObject;
+            GetBookData();
+        }
+        else if (findObjectInFov.keyObject != null)
+        {
+            keyObj = findObjectInFov.keyObject;
+            GetKey();
+        }
+        else if (findObjectInFov.doorObject != null)
+        {
+            doorObj = findObjectInFov.doorObject;
+            if (hasKey)
+            {
+                DoorOpen();
+            }
+            else
+            {
+                UIManager.instance.AcitveNeedKey();
+            }
+
+        }
+        else if (findObjectInFov.NPCObject != null)
+        {
+            UIManager.instance.SetActiveNPC();
+        }
+        else
+        {
+            //Debug.Log("hitObject null");
+            return;
+        }
     }
 
     public void CollectionData()
@@ -105,7 +145,7 @@ public class PlayerInteract : MonoBehaviour
         }
         else
         {
-            Debug.Log("don't exist obj");
+            //Debug.Log("don't exist obj");
         }
     }
 

@@ -60,7 +60,6 @@ public class MissionData : MonoBehaviour
             gauge = Mathf.Lerp(0f, 100f, elapsed / duration);
             UIManager.instance.SetDataProgress(gauge);
         }
-        //Debug.Log("Current Gauge Value: " + gauge);
     }
     public void StartCapture() //활성화
     {
@@ -87,7 +86,6 @@ public class MissionData : MonoBehaviour
 
     public void PauseCapture()
     {
-        Debug.Log("pause");
         if (isCapturing && !isPaused)
         {
             isPaused = true;
@@ -103,7 +101,7 @@ public class MissionData : MonoBehaviour
         {
             isPaused = false;
             isCapturing = true;
-            startTime += Time.time - pauseTime; // 일시정지된 시간을 더해 다시 시작
+            startTime += Time.time - pauseTime;
             UIManager.instance.SetActivePorgressUI(true);
         }
     }

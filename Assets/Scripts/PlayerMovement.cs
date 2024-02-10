@@ -48,15 +48,25 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        if(Input.GetKey(KeyCode.LeftShift))
+        //if(Input.GetKey(KeyCode.LeftShift))
+        //{
+        //    moveSpeed = runSpeed;
+        //    //playerAnimator.SetFloat("Speed", moveSpeed);
+        //}
+        //else
+        //{
+        //    moveSpeed = walkSpeed;
+        //}
+
+        if (Mathf.Abs(playerInput.move) > 0.65 || Mathf.Abs(playerInput.rotate) > 0.65)
         {
             moveSpeed = runSpeed;
-            //playerAnimator.SetFloat("Speed", moveSpeed);
         }
         else
         {
             moveSpeed = walkSpeed;
         }
+
 
         playerAnimator.SetFloat("Speed", moveSpeed);
 

@@ -38,6 +38,7 @@ public class UIManager : MonoBehaviour
     public Michsky.MUIP.DropdownMultiSelect missionList;
     public GameObject menuList;
     public GameObject key;
+    public bool isAttacing { get; private set; }
     //public Michsky.MUIP.RangeSlider healthBar;
 
 
@@ -120,7 +121,7 @@ public class UIManager : MonoBehaviour
 
     public void SetActiveHomePop(bool isActive)
     {
-        if(isActive)
+        if (isActive)
         {
             HomeNotification.Open();
         }
@@ -128,7 +129,7 @@ public class UIManager : MonoBehaviour
         {
             HomeNotification.Close();
         }
-        
+
     }
 
     public void SetActiveRestartPop(bool isActive)
@@ -165,7 +166,7 @@ public class UIManager : MonoBehaviour
 
     public void SetActiveMenuList()
     {
-        if(menuList.activeSelf)
+        if (menuList.activeSelf)
         {
             menuList.SetActive(false);
         }
@@ -177,11 +178,11 @@ public class UIManager : MonoBehaviour
 
     public void OnExityesClick()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
-        #else
-				                Application.Quit();
-        #endif
+#else
+        Application.Quit();
+#endif
     }
 
     public void UpdateMissionList(int index, bool isActive)
@@ -194,5 +195,15 @@ public class UIManager : MonoBehaviour
     public void SetActiveKey(bool value)
     {
         key.SetActive(value);
+    }
+
+    public void PointerUpButton()
+    {
+        isAttacing = false;
+    }
+
+    public void PointerDownButton()
+    {
+        isAttacing = true;
     }
 }

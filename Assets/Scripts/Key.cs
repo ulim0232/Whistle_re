@@ -15,7 +15,6 @@ public class Key : MonoBehaviour
     public void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        //Debug.Log(distanceToPlayer);
         if (distanceToPlayer > outlineDis)
         {
             outline.enabled = false;

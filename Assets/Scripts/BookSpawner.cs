@@ -57,7 +57,7 @@ public class BookSpawner : MonoBehaviour
 
             Instantiate(bookPrefab, spawnPoints[randomIndex].position, spawnPoints[randomIndex].rotation);
             useSpawnIndex.Add(randomIndex);
-            Debug.Log(spawnPoints[randomIndex].name);
+            //Debug.Log(spawnPoints[randomIndex].name);
         }
     }
 

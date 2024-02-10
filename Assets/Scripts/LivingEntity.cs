@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class LivingEntity : MonoBehaviour
+public class LivingEntity : MonoBehaviour, IDamageable
 {
     public float startingHealth = 100f; // 시작 체력
     public float health { get; protected set; } // 현재 체력

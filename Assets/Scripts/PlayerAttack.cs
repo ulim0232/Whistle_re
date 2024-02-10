@@ -11,7 +11,9 @@ public class PlayerAttack : MonoBehaviour
     public float damage = 10;
 
     private float lastAttackTime = 0;
-    private float timeBetAttack = 2f;
+    private float timeBetAttack = 1.8f;
+
+    private bool isAttacking = false;
 
     public AudioSource playerAudio;
     public AudioClip playerAttackClip;
@@ -27,28 +29,66 @@ public class PlayerAttack : MonoBehaviour
     {
         if(playerInput.fire)
         {
-            if (!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            //if (!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            //{
+            //    playerAnimator.SetTrigger("Attack");
+            //}
+            if(!isAttacking)
             {
                 playerAnimator.SetTrigger("Attack");
+                isAttacking = true;
+                Debug.Log("attack");
+                StartCoroutine(SetAttacking());
             }
+        }
+    }
+
+    private IEnumerator SetAttacking()
+    {
+        yield return new WaitForSeconds(timeBetAttack);
+        isAttacking = false;
+    }
+
+    public void Attack(Collider other)
+    {
+        if (!isAttacking)
+        {
+            playerAnimator.SetTrigger("Attack");
+            isAttacking = true;
+            other.gameObject.GetComponent<LivingEntity>().OnDamage(damage);
+            playerAudio.PlayOneShot(playerAttackClip);
+            StartCoroutine(SetAttacking());
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if(playerInput.fire)
+        if (playerInput.fire)
         {
-           
             if (other.gameObject.tag == "Enemy")
             {
-                if (Time.time > lastAttackTime + timeBetAttack)
+                if(!isAttacking)
                 {
-                    lastAttackTime = Time.time;
-                    other.gameObject.GetComponent<LivingEntity>().OnDamage(damage);
-                    playerAudio.PlayOneShot(playerAttackClip);
-                    
+                    Attack(other);
                 }
+                //if (Time.time > lastAttackTime + timeBetAttack)
+                //{
+                //    lastAttackTime = Time.time;
+                //    other.gameObject.GetComponent<LivingEntity>().OnDamage(damage);
+                //    playerAudio.PlayOneShot(playerAttackClip);
+                //}
             }
         }
+
+        //if (other.gameObject.tag == "Enemy")
+        //{
+        //    if (Time.time > lastAttackTime + timeBetAttack)
+        //    {
+        //        lastAttackTime = Time.time;
+        //        other.gameObject.GetComponent<LivingEntity>().OnDamage(damage);
+        //        playerAudio.PlayOneShot(playerAttackClip);
+
+        //    }
+        //}
     }
 }

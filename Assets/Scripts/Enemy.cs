@@ -472,7 +472,7 @@ public class Enemy : LivingEntity
     {
         // LivingEntity의 OnDamage() 실행(데미지 적용)
         base.OnDamage(damage);
-        //Debug.Log($"enemy health: {health}");
+        Debug.Log($"enemy health: {health}");
     }
 
     protected override void OnEnable()
@@ -491,14 +491,9 @@ public class Enemy : LivingEntity
     // 사망 처리
     public override void Die()
     {
-        // LivingEntity의 Die() 실행(사망 적용)
         pathFinder.isStopped = true;
         base.Die();
         enemyAnimator.SetTrigger("DIE"); 
         StartCoroutine(WaitForWakeUp());
-        //playerAnimator.SetTrigger("Die");
-        //playerMovement.enabled = false;
-        //playerAnimator.SetTrigger("Die");
-
     }
 }

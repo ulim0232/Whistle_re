@@ -257,7 +257,7 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/0232d/Desktop/KIA/Unity/KeyStore/ulim.keystore
+  AndroidKeystoreName: C:/Users/0232d/Desktop/KIA/Unity/key/ulim.keystore
   AndroidKeyaliasName: release
   AndroidEnableArmv9SecurityFeatures: 0
   AndroidBuildApkPerCpuArchitecture: 0
